@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-translate="title">Release Notes - WINBACK</title>
+    <link rel="icon" href="img/LogoWBrond.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <!-- Burger menu déplacé en premier -->
+        <div class="burger-menu" id="burger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!-- Logo déplacé après -->
+        <object
+          id="winback-logo"
+          data="img/logoWB.svg"
+          type="image/svg+xml"
+        ></object>
+      </div>
+      <div class="nav-controls">
+        <div class="search-container">
+          <img
+            src="img/loupe.png"
+            alt="Search"
+            class="search-icon"
+            id="search-toggle"
+          />
+          <div class="search-bar" id="search-bar">
+            <input
+              type="text"
+              placeholder="Search release history..."
+              data-translate="search_placeholder"
+            />
+          </div>
+        </div>
+        <div class="theme-toggle">
+          <label for="toggle" class="switch">
+            <span class="switch-label"></span>
+            <input type="checkbox" id="toggle" aria-label="Toggle dark mode" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </nav>
+
+    <header>
+      <h1 data-translate="title">Release Notes</h1>
+      <div class="disclaimer-top">
+        <div class="disclaimer" id="disclaimer">
+          <div class="disclaimer-content">
+            <div class="language-selector">
+              <label for="language-select" class="visually-hidden"
+                >Select language</label
+              >
+              <select id="language-select" aria-label="Select language">
+                <option value="en">🇬🇧</option>
+                <option value="fr">🇫🇷</option>
+                <option value="de">🇩🇪</option>
+                <option value="nl">🇳🇱</option>
+                <option value="el">🇬🇷</option>
+                <option value="hu">🇭🇺</option>
+                <option value="it">🇮🇹</option>
+                <option value="pl">🇵🇱</option>
+                <option value="pt">🇵🇹</option>
+                <option value="es">🇪🇸</option>
+                <option value="sv">🇸🇪</option>
+                <option value="tr">🇹🇷</option>
+              </select>
+            </div>
+            <span data-translate="disclaimer"
+              >For any questions or translation requests, contact us at +33 4 12
+              34 56 78 or support@winback.com</span
+            >
+            <button
+              class="close-disclaimer"
+              id="close-disclaimer"
+              aria-label="Close disclaimer"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="sidebar hidden" id="sidebar">
+        <ul>
+          <li>
+            <a href="#version46">
+              Version 4.6
+              <img src="img/Arrow.png" alt="Flèche" class="side-arrow-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#version43">
+              Version 4.3
+              <img src="img/Arrow.png" alt="Flèche" class="side-arrow-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#version42">
+              Version 4.2
+              <img src="img/Arrow.png" alt="Flèche" class="side-arrow-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#version339">
+              Version 3.39
+              <img src="img/Arrow.png" alt="Flèche" class="side-arrow-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#version334">
+              Version 3.34
+              <img src="img/Arrow.png" alt="Flèche" class="side-arrow-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#version333">
+              Version 3.33
+              <img src="img/Arrow.png" alt="Flèche" class="side-arrow-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#version327">
+              Version 3.27
+              <img src="img/Arrow.png" alt="Flèche" class="side-arrow-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#version320">
+              Version 3.20
+              <img src="img/Arrow.png" alt="Flèche" class="side-arrow-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#version317">
+              Version 3.17
+              <img src="img/Arrow.png" alt="Flèche" class="side-arrow-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="#version314">
+              Version 3.14
+              <img src="img/Arrow.png" alt="Flèche" class="side-arrow-icon" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content">
+        <div class="version-container" id="version-container">
+          <!-- Les versions seront générées ici dynamiquement -->
+        </div>
+      </div>
+    </main>
+
+    <script type="module">
+      import { updateVersionDisplay } from "./js/versionDisplay.js";
+      import translations from "./js/translations.js";
+
+      const toggle = document.getElementById("toggle");
+      const body = document.body;
+      const winbackLogo = document.getElementById("winback-logo");
+      const burgerMenu = document.getElementById("burger-menu");
+      const sidebar = document.getElementById("sidebar");
+      const languageSelect = document.getElementById("language-select");
+
+      // Fonction pour fermer la sidebar
+      function closeSidebar() {
+        burgerMenu.classList.remove("active");
+        sidebar.classList.add("hidden");
+        sidebar.classList.remove("visible");
+        body.classList.remove("sidebar-open");
+      }
+
+      // Mode sombre
+      const darkMode = localStorage.getItem("darkMode");
+      if (darkMode === "enabled") {
+        body.classList.add("dark-mode");
+        toggle.checked = true;
+        updateLogoColor(true);
+      }
+
+      function updateLogoColor(isDark) {
+        if (winbackLogo && winbackLogo.contentDocument) {
+          const paths = winbackLogo.contentDocument.querySelectorAll("path");
+          paths.forEach((path) => {
+            if (path.getAttribute("fill") !== "#F18841") {
+              path.style.fill = isDark ? "#FFFFFF" : "#000000";
+            }
+          });
+        }
+      }
+
+      // Gestionnaire d'événement pour le switch
+      toggle.addEventListener("change", () => {
+        if (toggle.checked) {
+          body.classList.add("dark-mode");
+          localStorage.setItem("darkMode", "enabled");
+          updateLogoColor(true);
+        } else {
+          body.classList.remove("dark-mode");
+          localStorage.setItem("darkMode", "disabled");
+          updateLogoColor(false);
+        }
+      });
+
+      // Mettre à jour la couleur du logo quand il est chargé
+      winbackLogo.addEventListener("load", function () {
+        updateLogoColor(body.classList.contains("dark-mode"));
+      });
+
+      // Menu burger
+      burgerMenu.addEventListener("click", () => {
+        burgerMenu.classList.toggle("active");
+        sidebar.classList.toggle("hidden");
+        sidebar.classList.toggle("visible");
+        body.classList.toggle("sidebar-open");
+      });
+
+      // Initialiser la sidebar
+      function initializeSidebar() {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.add("hidden");
+          sidebar.classList.remove("visible");
+          body.classList.remove("sidebar-open");
+        } else {
+          sidebar.classList.remove("hidden");
+          sidebar.classList.add("visible");
+          body.classList.add("sidebar-open");
+        }
+      }
+
+      window.addEventListener("load", initializeSidebar);
+      window.addEventListener("resize", initializeSidebar);
+
+      // Détails des versions
+      document.querySelectorAll(".version h2").forEach((header) => {
+        header.addEventListener("click", function () {
+          const details = this.nextElementSibling.nextElementSibling;
+          const arrow = this.querySelector(".arrow-icon");
+          details.classList.toggle("show");
+          arrow.style.transform = details.classList.contains("show")
+            ? "rotate(180deg)"
+            : "rotate(0deg)";
+        });
+      });
+
+      // Recherche
+      const searchToggle = document.getElementById("search-toggle");
+      const searchBar = document.getElementById("search-bar");
+      const searchContainer = document.querySelector(".search-container");
+
+      searchToggle.addEventListener("click", () => {
+        searchBar.classList.toggle("active");
+        if (searchBar.classList.contains("active"))
+          searchBar.querySelector("input").focus();
+      });
+
+      document.addEventListener("click", (e) => {
+        if (
+          !searchContainer.contains(e.target) &&
+          !searchToggle.contains(e.target)
+        ) {
+          searchBar.classList.remove("active");
+        }
+      });
+
+      // Gestion de la langue
+      function updateLanguage(lang) {
+        // Vérifier si la langue existe dans les traductions
+        if (!translations[lang]) {
+          console.warn(`Language ${lang} not found in translations`);
+          lang = "en"; // Fallback to English
+        }
+
+        // Mettre à jour tous les éléments avec data-translate dans tout le document
+        const elementsToTranslate =
+          document.querySelectorAll("[data-translate]");
+
+        elementsToTranslate.forEach((element) => {
+          const key = element.getAttribute("data-translate");
+
+          // Vérifier si la clé existe dans les traductions
+          if (translations[lang][key]) {
+            // Gérer les différents types d'éléments
+            if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+              // Pour les champs de saisie, mettre à jour le placeholder
+              element.placeholder = translations[lang][key];
+            } else if (element.tagName === "META") {
+              // Pour les balises meta, mettre à jour le contenu
+              element.content = translations[lang][key];
+            } else {
+              // Pour les autres éléments, mettre à jour le texte
+              element.textContent = translations[lang][key];
+            }
+          } else {
+            console.warn(
+              `Translation key "${key}" not found for language ${lang}`
+            );
+          }
+        });
+
+        // Mettre à jour la langue du document
+        document.documentElement.lang = lang;
+
+        // Mettre à jour le sélecteur de langue
+        const languageSelect = document.getElementById("language-select");
+        if (languageSelect) {
+          languageSelect.value = lang;
+        }
+
+        // Sauvegarder la préférence de langue
+        localStorage.setItem("selectedLanguage", lang);
+      }
+
+      // Initialisation de la langue
+      function initializeLanguage() {
+        // Détecter la langue du navigateur
+        const browserLang = navigator.language.split("-")[0];
+
+        // Récupérer la langue sauvegardée ou utiliser la langue du navigateur si disponible
+        const savedLang = localStorage.getItem("selectedLanguage");
+        const defaultLang = translations[browserLang] ? browserLang : "en";
+        const initialLang = savedLang || defaultLang;
+
+        // Mettre à jour l'interface avec la langue initiale
+        updateLanguage(initialLang);
+      }
+
+      // Configuration des écouteurs d'événements
+      document.addEventListener("DOMContentLoaded", () => {
+        const languageSelect = document.getElementById("language-select");
+
+        if (languageSelect) {
+          languageSelect.addEventListener("change", (e) => {
+            updateLanguage(e.target.value);
+          });
+        }
+
+        // Initialiser la langue
+        initializeLanguage();
+      });
+
+      // Gestion du disclaimer
+      const closeDisclaimer = document.getElementById("close-disclaimer");
+      const disclaimer = document.querySelector(".disclaimer");
+      const navbar = document.querySelector("nav");
+      const header = document.querySelector("header");
+
+      closeDisclaimer.addEventListener("click", () => {
+        disclaimer.classList.add("hidden");
+        navbar.style.top = "0"; // Déplace la navbar en haut
+        header.style.marginTop = "48px"; // Ajuste la marge du header
+
+        // Ajuste la marge pour mobile
+        if (window.innerWidth <= 768) {
+          header.style.marginTop = "45px";
+        }
+      });
+
+      // Ajouter un listener pour le redimensionnement de la fenêtre
+      window.addEventListener("resize", () => {
+        if (disclaimer.classList.contains("hidden")) {
+          header.style.marginTop = window.innerWidth <= 768 ? "45px" : "48px";
+        }
+      });
+
+      // Gestionnaire de clic sur le document
+      document.addEventListener("click", (e) => {
+        // Vérifie si on est en version mobile (max-width: 768px)
+        if (window.innerWidth <= 768) {
+          // Vérifie si la sidebar est visible
+          if (!sidebar.classList.contains("hidden")) {
+            // Vérifie si le clic n'est ni sur la sidebar ni sur le burger menu
+            if (!sidebar.contains(e.target) && !burgerMenu.contains(e.target)) {
+              closeSidebar();
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
