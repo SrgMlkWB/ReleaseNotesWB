@@ -343,6 +343,18 @@
           languageSelector.classList.remove("active");
         }
       });
+
+      // Ajouter après les autres event listeners
+      document.addEventListener("click", (event) => {
+        // Vérifie si le clic est en dehors de la sidebar et du burger menu
+        if (
+          !sidebar.contains(event.target) &&
+          !burgerMenu.contains(event.target) &&
+          sidebar.classList.contains("visible")
+        ) {
+          closeSidebar();
+        }
+      });
     </script>
   </body>
 </html>
