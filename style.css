@@ -233,7 +233,6 @@ nav {
     padding: 15px 20px;
     width: 100%;
     margin: 0;
-    box-sizing: border-box;
   }
 }
 
@@ -317,7 +316,7 @@ main {
 
   .sidebar {
     width: 80%;
-    top: 90px;
+    top: 60px !important;
     height: calc(100vh - 90px);
     overflow-y: auto;
     overflow-x: hidden;
@@ -774,7 +773,7 @@ body.dark-mode .switch {
   width: 300px;
   position: fixed;
   left: 0;
-  top: 48px;
+  top: 60px;
   height: calc(100vh - 93px);
   background: var(--bg-color);
   z-index: 1001;
@@ -808,7 +807,7 @@ body.dark-mode .switch {
   /* Assure que le contenu de la sidebar s'adapte à la nouvelle largeur */
   .sidebar ul {
     width: 100%;
-    padding: 0 20px;
+    padding: 0 0px !important;
   }
 
   .sidebar a {
@@ -867,7 +866,6 @@ body.dark-mode .switch {
     100% - 40px
   ); /* Réduit la largeur pour ne pas aller jusqu'aux bords */
   margin: 10px 20px; /* Ajoute des marges sur les côtés */
-  border-bottom: 1px solid #eee;
   transition: all 0.3s ease;
 }
 
