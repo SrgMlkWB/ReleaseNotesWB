@@ -1894,7 +1894,8 @@ main {
   }
 
   .version h2 {
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 500 !important;
   }
 }
 
@@ -1906,7 +1907,7 @@ main {
   align-items: center;
   cursor: pointer;
   margin-top: 15px;
-  font-weight: 550; /* Assure une bonne lisibilité */
+  font-weight: 500; /* Assure une bonne lisibilité */
 }
 
 .arrow-icon {
@@ -2218,15 +2219,15 @@ body.dark-mode .arrow-icon {
 .info-section h3 {
   color: var(--primary-color);
   margin-bottom: 15px;
-  font-size: 1.2em;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .info-section h4 {
   color: var(--text-color);
   margin: 15px 0 10px;
   font-size: 1.1em;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .info-section ul {
@@ -2241,7 +2242,7 @@ body.dark-mode .arrow-icon {
 }
 
 .info-section strong {
-  font-weight: 800;
+  font-weight: 600;
 }
 
 /* Dark mode adjustment */
