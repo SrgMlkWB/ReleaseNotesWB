@@ -24,21 +24,7 @@
         ></object>
       </div>
       <div class="nav-controls">
-        <div class="search-container">
-          <img
-            src="img/loupe.png"
-            alt="Search"
-            class="search-icon"
-            id="search-toggle"
-          />
-          <div class="search-bar" id="search-bar">
-            <input
-              type="text"
-              placeholder="Search release history..."
-              data-translate="search_placeholder"
-            />
-          </div>
-        </div>
+        <!-- Suppression du bloc search-container -->
         <div class="theme-toggle">
           <label for="toggle" class="switch">
             <span class="switch-label"></span>
@@ -73,17 +59,10 @@
                 <option value="tr">🇹🇷</option>
               </select>
             </div>
-            <span data-translate="disclaimer"
+            <span data-translate="disclaimer_text"
               >For any questions or translation requests, contact us at +33 4 12
               34 56 78 or support@winback.com</span
             >
-            <button
-              class="close-disclaimer"
-              id="close-disclaimer"
-              aria-label="Close disclaimer"
-            >
-              ×
-            </button>
           </div>
         </div>
       </div>
@@ -254,25 +233,7 @@
         });
       });
 
-      // Recherche
-      const searchToggle = document.getElementById("search-toggle");
-      const searchBar = document.getElementById("search-bar");
-      const searchContainer = document.querySelector(".search-container");
-
-      searchToggle.addEventListener("click", () => {
-        searchBar.classList.toggle("active");
-        if (searchBar.classList.contains("active"))
-          searchBar.querySelector("input").focus();
-      });
-
-      document.addEventListener("click", (e) => {
-        if (
-          !searchContainer.contains(e.target) &&
-          !searchToggle.contains(e.target)
-        ) {
-          searchBar.classList.remove("active");
-        }
-      });
+      // Supprimer les event listeners pour la recherche
 
       // Gestion de la langue
       function updateLanguage(lang) {
@@ -350,43 +311,7 @@
         initializeLanguage();
       });
 
-      // Gestion du disclaimer
-      const closeDisclaimer = document.getElementById("close-disclaimer");
-      const disclaimer = document.querySelector(".disclaimer");
-      const navbar = document.querySelector("nav");
-      const header = document.querySelector("header");
-
-      closeDisclaimer.addEventListener("click", () => {
-        disclaimer.classList.add("hidden");
-        navbar.style.top = "0"; // Déplace la navbar en haut
-        header.style.marginTop = "48px"; // Ajuste la marge du header
-
-        // Ajuste la marge pour mobile
-        if (window.innerWidth <= 768) {
-          header.style.marginTop = "45px";
-        }
-      });
-
-      // Ajouter un listener pour le redimensionnement de la fenêtre
-      window.addEventListener("resize", () => {
-        if (disclaimer.classList.contains("hidden")) {
-          header.style.marginTop = window.innerWidth <= 768 ? "45px" : "48px";
-        }
-      });
-
-      // Gestionnaire de clic sur le document
-      document.addEventListener("click", (e) => {
-        // Vérifie si on est en version mobile (max-width: 768px)
-        if (window.innerWidth <= 768) {
-          // Vérifie si la sidebar est visible
-          if (!sidebar.classList.contains("hidden")) {
-            // Vérifie si le clic n'est ni sur la sidebar ni sur le burger menu
-            if (!sidebar.contains(e.target) && !burgerMenu.contains(e.target)) {
-              closeSidebar();
-            }
-          }
-        }
-      });
+      // Supprimer les event listeners pour le close disclaimer
     </script>
   </body>
 </html>
