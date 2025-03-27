@@ -1616,3 +1616,42 @@ body.dark-mode .tag {
     margin-bottom: 20px;
   }
 }
+
+/* Style pour les paragraphes dans les détails */
+.release-details p {
+  margin: 8px 0; /* Réduit la marge verticale (haut/bas) */
+  line-height: 1.1; /* Réduit l'espacement entre les lignes */
+}
+
+.info-section li {
+  margin: 8px 0; /* Réduit la marge verticale (haut/bas) */
+  line-height: 1.1 !important; /* Réduit l'espacement entre les lignes */
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+  .release-details p {
+    margin: 6px 0; /* Encore plus compact sur mobile */
+    line-height: 1.1;
+  }
+}
+
+/* Style pour tous les éléments dans les détails */
+.release-details p,
+.release-details li,
+.info-section p,
+.info-section li {
+  margin: 8px 0; /* Réduit la marge verticale (haut/bas) */
+  line-height: 1.1 !important; /* Force l'espacement uniforme */
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+  .release-details p,
+  .release-details li,
+  .info-section p,
+  .info-section li {
+    margin: 6px 0; /* Encore plus compact sur mobile */
+    line-height: 1.1 !important;
+  }
+}
