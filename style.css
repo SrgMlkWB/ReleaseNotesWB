@@ -74,6 +74,7 @@ body.dark-mode .arrow-icon {
   height: 45px;
   display: flex;
   align-items: center;
+  justify-content: center; /* Ajouter pour centrer horizontalement */
   box-sizing: border-box;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -81,7 +82,7 @@ body.dark-mode .arrow-icon {
 .disclaimer-content {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centrer le texte */
+  justify-content: center;
   width: 100%;
   height: 100%;
 }
@@ -89,6 +90,19 @@ body.dark-mode .arrow-icon {
 .disclaimer-content span {
   text-align: center;
   padding: 0 20px;
+  width: 100%; /* Assure que le span prend toute la largeur */
+}
+
+/* Ajustement pour mobile */
+@media (max-width: 768px) {
+  .disclaimer-content {
+    padding: 0;
+  }
+
+  .disclaimer-content span {
+    padding: 0 15px;
+    font-size: 12px;
+  }
 }
 
 /* --- Navigation --- */
@@ -1743,6 +1757,8 @@ header h1 {
   position: relative;
   display: flex;
   align-items: center;
+  height: 40px;
+  width: 80px; /* Augmenté pour accommoder le drapeau et la flèche */
 }
 
 .language-selector select {
@@ -1754,15 +1770,55 @@ header h1 {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  width: 70px; /* Augmenté pour le drapeau */
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  z-index: 2;
 }
 
-.language-selector select:focus {
-  outline: none; /* Supprime le contour lors du focus */
+.lang-arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
 }
 
-.language-selector select:hover {
-  transform: scale(1.2);
-  transition: transform 0.2s ease;
+.lang-arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: url("img/Arrow.png") no-repeat center;
+  background-size: contain;
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform 0.3s ease;
+}
+
+/* Classe active pour la rotation */
+/* .language-selector.active .lang-arrow::after {
+  transform: translateY(-50%) rotate(-90deg);
+} */
+
+/* Maintenir les dimensions en responsive */
+@media (max-width: 768px) {
+  .language-selector {
+    width: 45px;
+    height: 20px;
+  }
+
+  .language-selector select {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    padding: 0;
+  }
 }
 
 .close-language-selector {
@@ -1786,38 +1842,6 @@ header h1 {
 
 .close-language-selector:hover {
   color: #ff0000;
-}
-
-/* Version mobile */
-@media (max-width: 768px) {
-  .language-selector {
-    height: 50px;
-    width: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .language-selector select {
-    width: 50px;
-    height: 50px;
-    font-size: 14px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .close-language-selector {
-    font-size: 20px;
-    right: 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .language-selector select {
-    font-size: 12px;
-  }
 }
 
 /* Main */

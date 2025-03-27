@@ -58,6 +58,7 @@
                 <option value="sv">🇸🇪</option>
                 <option value="tr">🇹🇷</option>
               </select>
+              <div class="lang-arrow"></div>
             </div>
             <span data-translate="disclaimer_text"
               >For any questions or translation requests, contact us at +33 4 12
@@ -150,7 +151,6 @@
       const winbackLogo = document.getElementById("winback-logo");
       const burgerMenu = document.getElementById("burger-menu");
       const sidebar = document.getElementById("sidebar");
-      const languageSelect = document.getElementById("language-select");
 
       // Fonction pour fermer la sidebar
       function closeSidebar() {
@@ -227,9 +227,9 @@
           const details = this.nextElementSibling.nextElementSibling;
           const arrow = this.querySelector(".arrow-icon");
           details.classList.toggle("show");
-          arrow.style.transform = details.classList.contains("show")
-            ? "rotate(180deg)"
-            : "rotate(0deg)";
+          arrow.style.transform = details.classList.contains("show");
+          // ? "rotate(90deg)"
+          // : "rotate(0deg)";
         });
       });
 
@@ -312,6 +312,36 @@
       });
 
       // Supprimer les event listeners pour le close disclaimer
+    </script>
+    <script>
+      const languageSelector = document.querySelector(".language-selector");
+      const languageSelect = document.getElementById("language-select");
+      const langArrow = document.querySelector(".lang-arrow");
+
+      // Fonction pour basculer l'état du sélecteur
+      function toggleLanguageSelector() {
+        languageSelector.classList.toggle("active");
+      }
+
+      // Event listener pour le select
+      languageSelect.addEventListener("click", toggleLanguageSelector);
+
+      // Event listener pour la flèche
+      langArrow.addEventListener("click", () => {
+        languageSelect.click(); // Simule un clic sur le select
+      });
+
+      // Fermer le sélecteur quand une option est sélectionnée
+      languageSelect.addEventListener("change", () => {
+        languageSelector.classList.remove("active");
+      });
+
+      // Fermer le sélecteur quand on clique ailleurs sur la page
+      document.addEventListener("click", (event) => {
+        if (!languageSelector.contains(event.target)) {
+          languageSelector.classList.remove("active");
+        }
+      });
     </script>
   </body>
 </html>
