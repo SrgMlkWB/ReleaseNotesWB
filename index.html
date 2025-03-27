@@ -285,13 +285,8 @@
 
       // Initialisation de la langue
       function initializeLanguage() {
-        // Détecter la langue du navigateur
-        const browserLang = navigator.language.split("-")[0];
-
-        // Récupérer la langue sauvegardée ou utiliser la langue du navigateur si disponible
-        const savedLang = localStorage.getItem("selectedLanguage");
-        const defaultLang = translations[browserLang] ? browserLang : "en";
-        const initialLang = savedLang || defaultLang;
+        // Toujours utiliser l'anglais comme langue par défaut
+        const initialLang = "en";
 
         // Mettre à jour l'interface avec la langue initiale
         updateLanguage(initialLang);
