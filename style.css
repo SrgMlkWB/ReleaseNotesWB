@@ -214,7 +214,7 @@ nav {
 /* --- Header --- */
 header {
   position: relative;
-  height: 500px;
+  height: 300px; /* Réduit de 500px à 300px */
   width: 100%;
   box-sizing: border-box;
   margin-top: 93px;
@@ -235,6 +235,22 @@ header::before {
   background: url("img/B3TX.jpeg") no-repeat center center;
   background-size: cover;
   z-index: -1;
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+  header {
+    margin-top: 98px;
+    height: 150px;
+    min-height: 200px; /* Réduit de 250px à 200px */
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    height: 130px; /* Ajout d'une hauteur spécifique pour les très petits écrans */
+    min-height: 180px;
+  }
 }
 
 /* --- Main Content --- */
@@ -867,7 +883,7 @@ body.dark-mode .sidebar a {
 /* Header - Le plus bas */
 header {
   position: relative;
-  height: 500px;
+  height: 400px !important;
   width: 100%;
   box-sizing: border-box;
   margin-top: 93px;
@@ -1889,12 +1905,12 @@ main {
 /* Pour les très petits écrans */
 @media (max-width: 480px) {
   .version {
-    margin-left: 5px;
+    margin-left: 15px;
     margin-right: 15px;
   }
 
   .version h2 {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 500 !important;
   }
 }
@@ -2035,8 +2051,8 @@ body.dark-mode .arrow-icon {
   }
 
   header {
-    margin-top: 98px; /* Ajusté pour les nouvelles hauteurs */
-    height: 150px; /* Augmenté de 100px à 150px */
+    margin-top: 90px !important; /* Ajusté pour les nouvelles hauteurs */
+    height: 40px !important;
     min-height: 250px; /* Augmenté de 200px à 250px */
     padding: 10px 0 0;
     width: 100vw;
@@ -2289,7 +2305,7 @@ body.dark-mode .contact-link:hover {
 
 .info-section p {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* Dark mode adjustment */
