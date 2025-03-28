@@ -1202,47 +1202,65 @@ header h1 {
   height: 40px;
   min-width: 65px;
   background-color: transparent;
-}
-
-.language-selector select {
-  width: 100%;
-  height: 100%;
-  padding-left: 35px;
-  padding-right: 8px;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: transparent;
-  border: none;
-  color: var(--text-color);
   cursor: pointer;
-  font-size: 16px;
 }
 
-.language-selector::before {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 50%;
-  transform: translateY(-50%);
+.selected-flag {
   width: 28px;
   height: 21px;
-  background-image: var(--flag-url);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  pointer-events: none;
+  margin-left: 4px;
+}
+
+.flag-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 5px;
+  z-index: 1000;
+}
+
+.language-selector.active .flag-dropdown {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  width: max-content;
+}
+
+.flag-option {
+  width: 28px;
+  height: 21px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.flag-option:hover {
+  transform: scale(1.1);
 }
 
 .lang-arrow {
   position: absolute;
-  left: 44px;
+  left: 34px;
   top: 50%;
   transform: translateY(-50%) rotate(90deg);
-  width: 22px;
-  height: 22px;
+  width: 12px;
+  height: 12px;
   pointer-events: none;
   filter: var(--primary-color-filter);
+  transition: transform 0.3s;
+}
+
+.language-selector.active .lang-arrow {
+  transform: translateY(-50%) rotate(-90deg);
 }
 
 /* Style pour mobile */
@@ -1252,22 +1270,26 @@ header h1 {
     height: 35px;
   }
 
-  .language-selector select {
-    font-size: 0;
-    padding-left: 26px;
-    padding-right: 8px;
-  }
-
-  .language-selector::before {
-    left: -15px; /* Décalé complètement à gauche */
+  .selected-flag {
     width: 24px;
     height: 18px;
+    margin-left: 0;
   }
 
   .lang-arrow {
-    left: 26px; /* Ajusté pour suivre le drapeau */
+    left: 26px;
     width: 10px;
     height: 10px;
+  }
+
+  .flag-dropdown {
+    right: 0;
+    left: auto;
+  }
+
+  .flag-option {
+    width: 24px;
+    height: 18px;
   }
 }
 

@@ -42,23 +42,21 @@
         <div class="disclaimer" id="disclaimer">
           <div class="disclaimer-content">
             <div class="language-selector">
-              <label for="language-select" class="visually-hidden"
-                >Select language</label
-              >
-              <select id="language-select" aria-label="Select language">
-                <option value="en" data-flag="gb"></option>
-                <option value="fr" data-flag="fr"></option>
-                <option value="de" data-flag="de"></option>
-                <option value="nl" data-flag="nl"></option>
-                <option value="el" data-flag="gr"></option>
-                <option value="hu" data-flag="hu"></option>
-                <option value="it" data-flag="it"></option>
-                <option value="pl" data-flag="pl"></option>
-                <option value="pt" data-flag="pt"></option>
-                <option value="es" data-flag="es"></option>
-                <option value="sv" data-flag="se"></option>
-                <option value="tr" data-flag="tr"></option>
-              </select>
+              <div class="selected-flag"></div>
+              <div class="flag-dropdown" id="flag-dropdown">
+                <div class="flag-option" data-value="en" data-flag="gb"></div>
+                <div class="flag-option" data-value="fr" data-flag="fr"></div>
+                <div class="flag-option" data-value="de" data-flag="de"></div>
+                <div class="flag-option" data-value="nl" data-flag="nl"></div>
+                <div class="flag-option" data-value="el" data-flag="gr"></div>
+                <div class="flag-option" data-value="hu" data-flag="hu"></div>
+                <div class="flag-option" data-value="it" data-flag="it"></div>
+                <div class="flag-option" data-value="pl" data-flag="pl"></div>
+                <div class="flag-option" data-value="pt" data-flag="pt"></div>
+                <div class="flag-option" data-value="es" data-flag="es"></div>
+                <div class="flag-option" data-value="sv" data-flag="se"></div>
+                <div class="flag-option" data-value="tr" data-flag="tr"></div>
+              </div>
               <img src="img/Arrow.png" alt="arrow" class="lang-arrow" />
             </div>
             <span>
@@ -320,67 +318,45 @@
       // Supprimer les event listeners pour le close disclaimer
     </script>
     <script>
-      const languageSelector = document.querySelector(".language-selector");
-      const languageSelect = document.getElementById("language-select");
-      const langArrow = document.querySelector(".lang-arrow");
-
-      // Fonction pour basculer l'état du sélecteur
-      function toggleLanguageSelector() {
-        languageSelector.classList.toggle("active");
-      }
-
-      // Event listener pour le select
-      languageSelect.addEventListener("click", toggleLanguageSelector);
-
-      // Event listener pour la flèche
-      langArrow.addEventListener("click", () => {
-        languageSelect.click(); // Simule un clic sur le select
-      });
-
-      // Fermer le sélecteur quand une option est sélectionnée
-      languageSelect.addEventListener("change", () => {
-        languageSelector.classList.remove("active");
-      });
-
-      // Fermer le sélecteur quand on clique ailleurs sur la page
-      document.addEventListener("click", (event) => {
-        if (!languageSelector.contains(event.target)) {
-          languageSelector.classList.remove("active");
-        }
-      });
-
-      // Ajouter après les autres event listeners
-      document.addEventListener("click", (event) => {
-        // Vérifie si le clic est en dehors de la sidebar et du burger menu
-        if (
-          !sidebar.contains(event.target) &&
-          !burgerMenu.contains(event.target) &&
-          sidebar.classList.contains("visible")
-        ) {
-          closeSidebar();
-        }
-      });
-    </script>
-    <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const languageSelect = document.querySelector(
-          ".language-selector select"
-        );
         const languageSelector = document.querySelector(".language-selector");
+        const selectedFlag = document.querySelector(".selected-flag");
+        const flagOptions = document.querySelectorAll(".flag-option");
 
-        function updateFlag(select) {
-          const selectedOption = select.options[select.selectedIndex];
-          const flagCode = selectedOption.getAttribute("data-flag");
-          const flagUrl = `https://flagicons.lipis.dev/flags/4x3/${flagCode}.svg`;
-          languageSelector.style.setProperty("--flag-url", `url(${flagUrl})`);
+        // Fonction pour mettre à jour le drapeau sélectionné
+        function updateSelectedFlag(flagCode) {
+          selectedFlag.style.backgroundImage = `url(https://flagicons.lipis.dev/flags/4x3/${flagCode}.svg)`;
         }
 
-        // Mettre à jour le drapeau initialement
-        updateFlag(languageSelect);
+        // Initialiser avec le drapeau anglais
+        updateSelectedFlag("gb");
 
-        // Mettre à jour le drapeau quand la sélection change
-        languageSelect.addEventListener("change", function () {
-          updateFlag(this);
+        // Toggle du dropdown
+        languageSelector.addEventListener("click", function (e) {
+          languageSelector.classList.toggle("active");
+        });
+
+        // Gestion des clics sur les drapeaux
+        flagOptions.forEach((option) => {
+          const flagCode = option.dataset.flag;
+          option.style.backgroundImage = `url(https://flagicons.lipis.dev/flags/4x3/${flagCode}.svg)`;
+
+          option.addEventListener("click", function (e) {
+            e.stopPropagation();
+            const value = this.dataset.value;
+            const flagCode = this.dataset.flag;
+
+            updateSelectedFlag(flagCode);
+            updateLanguage(value); // Fonction existante pour mettre à jour la langue
+            languageSelector.classList.remove("active");
+          });
+        });
+
+        // Fermer le dropdown quand on clique ailleurs
+        document.addEventListener("click", function (e) {
+          if (!languageSelector.contains(e.target)) {
+            languageSelector.classList.remove("active");
+          }
         });
       });
     </script>
