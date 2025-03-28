@@ -73,10 +73,9 @@ body.dark-mode .sidebar a {
   height: 45px;
   display: flex;
   align-items: center;
-  justify-content: center; /* Ajouter pour centrer horizontalement */
+  justify-content: center;
   box-sizing: border-box;
   transition: background-color 0.3s, color 0.3s;
-  position: relative;
 }
 
 /* Ajout du trait dégradé sous le disclaimer */
@@ -138,40 +137,77 @@ body.dark-mode .disclaimer::after {
 
 /* --- Navigation --- */
 nav {
-  background-color: var(--bg-color);
-  padding: 14px 20px;
-  display: flex;
   position: fixed;
-  width: 100%;
-  top: 45px;
+  top: 45px; /* Exactement la hauteur du disclaimer */
+  left: 0;
+  right: 0;
+  height: 45px;
+  background: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
   z-index: 1002;
-  box-sizing: border-box;
-  height: 50px;
-  transition: top 0.3s ease;
 }
 
 .nav-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2px;
   position: relative;
-}
-
-.nav-controls {
-  margin-left: auto;
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: center; /* Centre les éléments horizontalement */
+  height: 100%;
 }
 
+/* Style pour le logo WINBACK */
 #winback-logo {
   position: absolute;
-  left: 54%;
+  left: 50%;
   transform: translateX(-50%);
   height: 20px;
+}
+
+/* Style pour le burger menu */
+.burger-menu {
+  position: absolute;
+  left: 20px;
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Style pour les contrôles de navigation */
+.nav-controls {
+  position: absolute;
+  right: 20px;
+}
+
+/* Ajustements responsive */
+@media (max-width: 768px) {
+  nav {
+    padding: 8px 10px;
+    height: 45px;
+    top: 45px;
+  }
+
+  #winback-logo {
+    height: 15px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .burger-menu {
+    left: 10px;
+    width: 25px;
+    height: 18px;
+  }
+
+  .nav-controls {
+    right: 10px;
+  }
 }
 
 /* --- Sidebar --- */
@@ -269,17 +305,17 @@ nav {
 
 /* --- Header --- */
 header {
+  margin-top: 90px; /* Somme des hauteurs du disclaimer et de la navbar */
   position: relative;
   height: 300px;
   width: 100%;
   box-sizing: border-box;
-  margin-top: 93px;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-  justify-content: flex-start; /* Changé pour aligner en haut */
   z-index: 1000;
-  overflow: hidden; /* Pour contenir les images */
+  overflow: hidden;
 }
 
 header h2 {
@@ -288,27 +324,48 @@ header h2 {
   z-index: 1000;
   font-size: 55px;
   text-align: center;
-  width: calc(100% - 40px);
+  width: 100%;
   max-width: 1200px;
-  margin: 20px auto 0;
+  margin: 0 auto; /* Centrer horizontalement */
   padding: 0 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), -2px -2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Ajustements responsive */
 @media (max-width: 768px) {
+  #winback-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 15px;
+  }
+
+  header {
+    margin-top: 98px;
+    height: 150px;
+    min-height: 200px;
+  }
+
   header h2 {
     font-size: 40px;
-    margin: 10px auto 0;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3),
       -1px -1px 3px rgba(0, 0, 0, 0.3);
   }
 }
 
 @media (max-width: 480px) {
+  header {
+    height: 130px;
+    min-height: 180px;
+  }
+
   header h2 {
     font-size: 30px;
-    margin: 8px auto 0;
+    margin: 0 auto;
+    padding: 0 15px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3),
       -1px -1px 2px rgba(0, 0, 0, 0.3);
   }
@@ -338,7 +395,11 @@ header h2 {
   header {
     margin-top: 98px;
     height: 150px;
-    min-height: 200px;
+    min-height: 250px;
+  }
+
+  main {
+    margin-left: 0;
   }
 }
 
@@ -1708,27 +1769,7 @@ body.dark-mode .tag {
   }
 }
 
-/* Style pour tous les éléments dans les détails */
-.release-details p,
-.release-details li,
-.info-section p,
-.info-section li {
-  margin: 8px 0; /* Réduit la marge verticale (haut/bas) */
-  line-height: 1.1 !important; /* Force l'espacement uniforme */
-}
-
-/* Version mobile */
-@media (max-width: 768px) {
-  .release-details p,
-  .release-details li,
-  .info-section p,
-  .info-section li {
-    margin: 6px 0; /* Encore plus compact sur mobile */
-    line-height: 1.1 !important;
-  }
-}
-
-/* Style de base pour le texte dans les détails des versions */
+/* Style pour tous les éléments dans les détails des versions */
 .release-details {
   color: var(--text-color);
 }
