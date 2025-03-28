@@ -46,20 +46,20 @@
                 >Select language</label
               >
               <select id="language-select" aria-label="Select language">
-                <option value="en">🇬🇧</option>
-                <option value="fr">🇫🇷</option>
-                <option value="de">🇩🇪</option>
-                <option value="nl">🇳🇱</option>
-                <option value="el">🇬🇷</option>
-                <option value="hu">🇭🇺</option>
-                <option value="it">🇮🇹</option>
-                <option value="pl">🇵🇱</option>
-                <option value="pt">🇵🇹</option>
-                <option value="es">🇪🇸</option>
-                <option value="sv">🇸🇪</option>
-                <option value="tr">🇹🇷</option>
+                <option value="en" data-flag="gb"></option>
+                <option value="fr" data-flag="fr"></option>
+                <option value="de" data-flag="de"></option>
+                <option value="nl" data-flag="nl"></option>
+                <option value="el" data-flag="gr"></option>
+                <option value="hu" data-flag="hu"></option>
+                <option value="it" data-flag="it"></option>
+                <option value="pl" data-flag="pl"></option>
+                <option value="pt" data-flag="pt"></option>
+                <option value="es" data-flag="es"></option>
+                <option value="sv" data-flag="se"></option>
+                <option value="tr" data-flag="tr"></option>
               </select>
-              <div class="lang-arrow"></div>
+              <img src="img/Arrow.png" alt="arrow" class="lang-arrow" />
             </div>
             <span>
               <span data-translate="disclaimer_text_start"></span>
@@ -359,6 +359,29 @@
         ) {
           closeSidebar();
         }
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageSelect = document.querySelector(
+          ".language-selector select"
+        );
+        const languageSelector = document.querySelector(".language-selector");
+
+        function updateFlag(select) {
+          const selectedOption = select.options[select.selectedIndex];
+          const flagCode = selectedOption.getAttribute("data-flag");
+          const flagUrl = `https://flagicons.lipis.dev/flags/4x3/${flagCode}.svg`;
+          languageSelector.style.setProperty("--flag-url", `url(${flagUrl})`);
+        }
+
+        // Mettre à jour le drapeau initialement
+        updateFlag(languageSelect);
+
+        // Mettre à jour le drapeau quand la sélection change
+        languageSelect.addEventListener("change", function () {
+          updateFlag(this);
+        });
       });
     </script>
     <!-- Suppression du script de slideshow en bas du fichier -->
