@@ -400,7 +400,7 @@ header h2 {
   }
 }
 
-/* Style pour les images du diaporama */
+/* Style pour l'image de fond */
 .slideshow-image {
   position: absolute;
   top: 0;
@@ -409,14 +409,8 @@ header h2 {
   height: 100%;
   background-size: cover;
   background-position: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  z-index: -1;
-}
-
-/* Classe pour l'image active */
-.slideshow-image.active {
   opacity: 1;
+  z-index: -1;
 }
 
 /* Version mobile */

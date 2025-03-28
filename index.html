@@ -40,18 +40,6 @@
       <div class="slideshow-container">
         <div
           class="slideshow-image active"
-          style="background-image: url('img/B3TX.jpeg')"
-        ></div>
-        <div
-          class="slideshow-image"
-          style="background-image: url('img/B3B.jpeg')"
-        ></div>
-        <div
-          class="slideshow-image"
-          style="background-image: url('img/HITENS.jpeg')"
-        ></div>
-        <div
-          class="slideshow-image"
           style="background-image: url('img/B4.jpeg')"
         ></div>
       </div>
@@ -374,25 +362,22 @@
         }
       });
     </script>
+    <!-- Supprimer ce script -->
+    <!--
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const images = document.querySelectorAll(".slideshow-image");
         let currentImageIndex = 0;
 
         function nextImage() {
-          // Retire la classe active de l'image courante
           images[currentImageIndex].classList.remove("active");
-
-          // Passe à l'image suivante
           currentImageIndex = (currentImageIndex + 1) % images.length;
-
-          // Ajoute la classe active à la nouvelle image
           images[currentImageIndex].classList.add("active");
         }
 
-        // Change d'image toutes les 5 secondes (5000 millisecondes)
         setInterval(nextImage, 5000);
       });
     </script>
+    -->
   </body>
 </html>
