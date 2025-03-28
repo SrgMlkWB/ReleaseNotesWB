@@ -1,51 +1,86 @@
 const translations = {
   en: {
-    disclaimer_text:
-      "For any questions or translation requests, contact us at +33 4 12 34 56 78 or support@winback.com",
+    disclaimer_text_start:
+      "For any questions or translation requests, contact us at",
+    disclaimer_text_middle: "or",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
   fr: {
-    disclaimer_text:
-      "Pour toute question ou demande de traduction, contactez-nous au +33 4 12 34 56 78 ou support@winback.com",
+    disclaimer_text_start:
+      "Pour toute question ou demande de traduction, contactez-nous au",
+    disclaimer_text_middle: "ou",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
   de: {
-    disclaimer_text:
-      "Bei Fragen oder Übersetzungsanfragen kontaktieren Sie uns unter +33 4 12 34 56 78 oder support@winback.com",
+    disclaimer_text_start:
+      "Bei Fragen oder Übersetzungsanfragen kontaktieren Sie uns unter",
+    disclaimer_text_middle: "oder",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
   nl: {
-    disclaimer_text:
-      "Voor vragen of vertaalverzoeken kunt u contact met ons opnemen via +33 4 12 34 56 78 of support@winback.com",
+    disclaimer_text_start:
+      "Voor vragen of vertaalverzoeken kunt u contact met ons opnemen via",
+    disclaimer_text_middle: "of",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
   el: {
-    disclaimer_text:
-      "Για ερωτήσεις ή αιτήματα μετάφρασης, επικοινωνήστε μαζί μας στο +33 4 12 34 56 78 ή στο support@winback.com",
+    disclaimer_text_start:
+      "Για ερωτήσεις ή αιτήματα μετάφρασης, επικοινωνήστε μαζί μας στο",
+    disclaimer_text_middle: "ή στο",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
   hu: {
-    disclaimer_text:
-      "Kérdések vagy fordítási kérések esetén keressen minket a +33 4 12 34 56 78 számon vagy a support@winback.com címen",
+    disclaimer_text_start:
+      "Kérdések vagy fordítási kérések esetén keressen minket a",
+    disclaimer_text_middle: "számon vagy a",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
   it: {
-    disclaimer_text:
-      "Per domande o richieste di traduzione, contattateci al +33 4 12 34 56 78 o support@winback.com",
+    disclaimer_text_start:
+      "Per domande o richieste di traduzione, contattateci al",
+    disclaimer_text_middle: "o",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
   pl: {
-    disclaimer_text:
-      "W przypadku pytań lub próśb o tłumaczenie prosimy o kontakt pod numerem +33 4 12 34 56 78 lub support@winback.com",
+    disclaimer_text_start:
+      "W przypadku pytań lub próśb o tłumaczenie prosimy o kontakt pod numerem",
+    disclaimer_text_middle: "lub",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
   pt: {
-    disclaimer_text:
-      "Para questões ou pedidos de tradução, contacte-nos através do +33 4 12 34 56 78 ou support@winback.com",
+    disclaimer_text_start:
+      "Para questões ou pedidos de tradução, contacte-nos através do",
+    disclaimer_text_middle: "ou",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
   es: {
-    disclaimer_text:
-      "Para cualquier pregunta o solicitud de traducción, contáctenos al +33 4 12 34 56 78 o support@winback.com",
+    disclaimer_text_start:
+      "Para cualquier pregunta o solicitud de traducción, contáctenos al",
+    disclaimer_text_middle: "o",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
   sv: {
-    disclaimer_text:
-      "För frågor eller översättningsförfrågningar, kontakta oss på +33 4 12 34 56 78 eller support@winback.com",
+    disclaimer_text_start:
+      "För frågor eller översättningsförfrågningar, kontakta oss på",
+    disclaimer_text_middle: "eller",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
   tr: {
-    disclaimer_text:
-      "Sorularınız veya çeviri talepleriniz için +33 4 12 34 56 78 veya support@winback.com üzerinden bizimle iletişime geçin",
+    disclaimer_text_start: "Sorularınız veya çeviri talepleriniz için",
+    disclaimer_text_middle: "veya",
+    phone: "04 83 66 16 66",
+    email: "hello@winback.com",
   },
 };
 

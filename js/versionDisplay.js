@@ -161,8 +161,12 @@ export function updateVersionDisplay(searchQuery = "") {
 
             <div class="info-section">
               <h3>Technical Support</h3>
-              <p><strong>Email:</strong> ${version.support.email}</p>
-              <p><strong>Phone:</strong> ${version.support.phone}</p>
+              <p><strong>Email:</strong> <a href="mailto:hello@winback.com" class="contact-link">${
+                version.support.email
+              }</a></p>
+              <p><strong>Phone:</strong> <a href="tel:+33483661666" class="contact-link">${
+                version.support.phone
+              }</a></p>
               <p><strong>Hours:</strong> ${version.support.hours}</p>
             </div>
           </div>
