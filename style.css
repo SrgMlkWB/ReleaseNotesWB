@@ -138,10 +138,10 @@ body.dark-mode .disclaimer::after {
 /* --- Navigation --- */
 nav {
   position: fixed;
-  top: 45px; /* Exactement la hauteur du disclaimer */
+  top: 45px;
   left: 0;
   right: 0;
-  height: 45px;
+  height: 60px; /* Modifié à 60px */
   background: var(--bg-color);
   border-bottom: 1px solid var(--border-color);
   display: flex;
@@ -156,11 +156,10 @@ nav {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center; /* Centre les éléments horizontalement */
+  justify-content: center;
   height: 100%;
 }
 
-/* Style pour le logo WINBACK */
 #winback-logo {
   position: absolute;
   left: 50%;
@@ -168,7 +167,6 @@ nav {
   height: 20px;
 }
 
-/* Style pour le burger menu */
 .burger-menu {
   position: absolute;
   left: 20px;
@@ -178,23 +176,40 @@ nav {
   z-index: 2;
 }
 
-/* Style pour les contrôles de navigation */
 .nav-controls {
   position: absolute;
   right: 20px;
 }
 
-/* Ajustements responsive */
+/* Sidebar */
+.sidebar {
+  padding-top: 25px;
+  border-right: 1px solid var(--border-color);
+  width: 300px;
+  position: fixed;
+  left: 0;
+  top: 48px;
+  height: calc(100vh - 93px);
+  background: var(--bg-color);
+  z-index: 1001;
+  transition: all 0.3s ease;
+  overflow-y: auto;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   nav {
     padding: 8px 10px;
-    height: 45px;
+    height: 60px; /* Modifié à 60px */
     top: 45px;
+  }
+
+  .nav-container {
+    gap: 10px;
   }
 
   #winback-logo {
     height: 15px;
-    position: absolute;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -207,6 +222,21 @@ nav {
 
   .nav-controls {
     right: 10px;
+  }
+
+  .sidebar {
+    width: 80%;
+    top: 60px;
+    height: calc(100vh - 90px);
+  }
+
+  .sidebar.visible {
+    left: 0;
+    width: 90%;
+  }
+
+  .sidebar.hidden {
+    left: -100%;
   }
 }
 
@@ -327,7 +357,7 @@ header h2 {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto; /* Centrer horizontalement */
-  padding: 0 20px;
+  padding: 10px 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), -2px -2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -364,8 +394,8 @@ header h2 {
 
   header h2 {
     font-size: 30px;
-    margin: 0 auto;
-    padding: 0 15px;
+    margin: 20px auto;
+    padding: 0 0;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3),
       -1px -1px 2px rgba(0, 0, 0, 0.3);
   }
@@ -429,7 +459,7 @@ main {
 @media (max-width: 768px) {
   nav {
     padding: 8px 10px;
-    height: 45px;
+    height: 60px; /* Modifié à 60px */
     top: 45px;
   }
 
@@ -443,7 +473,7 @@ main {
     /* display: flex;
     align-items: center;
     justify-content: center; */
-    left: 56% !important;
+    left: 50% !important;
   }
 
   .sidebar {
@@ -490,7 +520,7 @@ main {
   }
 
   header {
-    margin-top: 98px;
+    margin-top: 105px; /* Ajusté pour la nouvelle hauteur de navbar (45px disclaimer + 60px navbar) */
     height: 150px;
     min-height: 250px;
   }
@@ -519,8 +549,7 @@ main {
 /* ========= NAVIGATION & SIDEBAR ========= */
 /* --- Burger Menu --- */
 .burger-menu {
-  margin-left: 3px;
-  margin-right: 20px;
+  margin-right: 380px !important;
   width: 30px;
   height: 24px;
   position: relative;
@@ -1364,7 +1393,7 @@ main {
 @media (max-width: 768px) {
   nav {
     padding: 8px 10px;
-    height: 45px; /* Même hauteur en mobile */
+    height: 60px; /* Modifié à 60px */
     top: 45px; /* Reste collé au disclaimer */
   }
 
@@ -1462,7 +1491,7 @@ main {
 
 @media (max-width: 480px) {
   nav {
-    height: 45px;
+    height: 60px; /* Maintenu à 60px */
   }
   .sidebar {
     top: 45px;
