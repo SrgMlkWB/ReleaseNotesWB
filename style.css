@@ -1236,7 +1236,7 @@ header h1 {
 }
 
 .flag-option {
-  border-radius: 5px;
+  border-radius: 3px;
   width: 40px;
   height: 30px;
   background-size: contain;
@@ -1252,7 +1252,7 @@ header h1 {
 
 .lang-arrow {
   position: absolute;
-  left: 50px;
+  left: 15px;
   top: 50%;
   transform: translateY(-50%) rotate(90deg);
   width: 22px;
@@ -1269,30 +1269,31 @@ header h1 {
 /* Style pour mobile */
 @media (max-width: 768px) {
   .language-selector {
-    min-width: 55px;
-    height: 35px;
+    min-width: 82px; /* Ajusté pour les drapeaux plus grands */
+    height: 50px;
   }
 
   .selected-flag {
-    width: 24px;
-    height: 18px;
-    margin-left: -15px;
-  }
-
-  .lang-arrow {
-    left: 20px;
-    width: 15px;
-    height: 15px;
-  }
-
-  .flag-dropdown {
-    right: 0;
-    left: auto;
+    width: 33px; /* Augmenté de 10% (48px * 1.1) */
+    height: 40px; /* Augmenté de 10% (36px * 1.1) */
+    margin-left: -20px;
   }
 
   .flag-option {
-    width: 24px;
-    height: 18px;
+    width: 53px; /* Augmenté de 10% (48px * 1.1) */
+    height: 40px; /* Augmenté de 10% (36px * 1.1) */
+  }
+
+  .flag-dropdown {
+    padding: 8px; /* Légèrement plus de padding pour accommoder les plus grands drapeaux */
+    gap: 8px; /* Augmenté l'espacement entre les drapeaux */
+  }
+}
+
+/* Ajustement spécifique pour les très petits écrans */
+@media (max-width: 480px) {
+  .language-selector {
+    min-width: 25px;
   }
 }
 
@@ -1625,6 +1626,7 @@ body.dark-mode .version h2 {
 .disclaimer-content span {
   text-align: center;
   padding: 0 0px;
+  margin-top: 5px;
 }
 
 @media (max-width: 768px) {
