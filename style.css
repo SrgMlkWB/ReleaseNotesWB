@@ -141,7 +141,7 @@ nav {
   top: 45px;
   left: 0;
   right: 0;
-  height: 60px; /* Modifié à 60px */
+  height: 60px; /* Hauteur desktop */
   background: var(--bg-color);
   border-bottom: 1px solid var(--border-color);
   display: flex;
@@ -188,7 +188,7 @@ nav {
   width: 300px;
   position: fixed;
   left: 0;
-  top: 48px;
+  top: 80px !important;
   height: calc(100vh - 93px);
   background: var(--bg-color);
   z-index: 1001;
@@ -200,33 +200,32 @@ nav {
 @media (max-width: 768px) {
   nav {
     padding: 8px 10px;
-    height: 60px; /* Modifié à 60px */
+    height: 50px; /* Modifié à 50px pour mobile */
     top: 45px;
   }
 
-  .nav-container {
-    gap: 10px;
+  header {
+    margin-top: 95px; /* Ajusté (45px disclaimer + 50px navbar) */
   }
 
   #winback-logo {
-    height: 15px;
-    left: 50%;
-    transform: translateX(-50%);
+    height: 13px; /* Réduit légèrement pour s'adapter à la nouvelle hauteur */
   }
 
   .burger-menu {
-    left: 10px;
-    width: 25px;
-    height: 18px;
+    width: 22px; /* Ajusté pour la nouvelle hauteur */
+    height: 16px;
   }
 
   .nav-controls {
-    right: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 
   .sidebar {
     width: 80%;
-    top: 60px;
+    top: 80px !important;
     height: calc(100vh - 90px);
   }
 
@@ -459,7 +458,7 @@ main {
 @media (max-width: 768px) {
   nav {
     padding: 8px 10px;
-    height: 60px; /* Modifié à 60px */
+    height: 45px !important; /* Modifié à 60px */
     top: 45px;
   }
 
@@ -478,7 +477,7 @@ main {
 
   .sidebar {
     width: 80%;
-    top: 60px !important;
+    top: 80px !important;
     height: calc(100vh - 90px);
     overflow-y: auto;
     overflow-x: hidden;
