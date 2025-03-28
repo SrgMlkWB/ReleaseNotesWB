@@ -17,7 +17,12 @@ export function updateVersionDisplay(searchQuery = "") {
 
   let versions = Object.entries(versionData)
     .map(([id, data]) => ({ id, ...data }))
-    .sort((a, b) => b.version.localeCompare(a.version));
+    .sort((a, b) => {
+      // Convertir les numéros de version en nombres pour un tri correct
+      const vA = parseFloat(a.version);
+      const vB = parseFloat(b.version);
+      return vB - vA;
+    });
 
   // Filter versions if a search query is active
   if (searchQuery) {
@@ -46,7 +51,8 @@ export function updateVersionDisplay(searchQuery = "") {
   versions.forEach((version) => {
     const versionElement = document.createElement("section");
     versionElement.className = "version";
-    versionElement.id = `version${version.version.replace(".", "")}`;
+    const versionId = version.version.replace(/\./g, "");
+    versionElement.id = `version${versionId}`;
 
     const updateTypeText =
       version.updateType === "corrective"
@@ -179,6 +185,23 @@ export function updateVersionDisplay(searchQuery = "") {
   });
 
   updateSidebar(versions);
+
+  // Vérifier si on arrive avec un hash dans l'URL et ouvrir la version correspondante
+  if (window.location.hash) {
+    const targetId = window.location.hash.slice(1);
+    const targetVersion = document.getElementById(targetId);
+    if (targetVersion) {
+      const releaseDetails = targetVersion.querySelector(".release-details");
+      const arrowIcon = targetVersion.querySelector(".arrow-icon");
+      if (releaseDetails && arrowIcon) {
+        releaseDetails.classList.add("show");
+        arrowIcon.style.transform = "rotate(180deg)";
+        setTimeout(() => {
+          targetVersion.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }
 }
 
 // Function to update the sidebar with version links
@@ -188,13 +211,46 @@ function updateSidebar(versions) {
   ul.innerHTML = "";
 
   versions.forEach((version) => {
+    const versionId = version.version.replace(/\./g, "");
     const li = document.createElement("li");
     li.innerHTML = `
-      <a href="#version${version.version.replace(".", "")}">
+      <a href="#version${versionId}">
         Version ${version.version}
         <img src="img/Arrow.png" alt="Arrow" class="side-arrow-icon" />
       </a>
     `;
+
+    // Ajouter le gestionnaire de clic
+    li.querySelector("a").addEventListener("click", (e) => {
+      // Trouver la section de version correspondante
+      const targetVersion = document.getElementById(`version${versionId}`);
+      if (targetVersion) {
+        // Ouvrir les détails de la version
+        const releaseDetails = targetVersion.querySelector(".release-details");
+        const arrowIcon = targetVersion.querySelector(".arrow-icon");
+        if (releaseDetails && arrowIcon) {
+          releaseDetails.classList.add("show");
+          arrowIcon.style.transform = "rotate(180deg)";
+        }
+
+        // Fermer la sidebar sur mobile
+        const burgerMenu = document.getElementById("burger-menu");
+        const sidebar = document.getElementById("sidebar");
+        const body = document.body;
+        if (window.innerWidth <= 768) {
+          burgerMenu.classList.remove("active");
+          sidebar.classList.add("hidden");
+          sidebar.classList.remove("visible");
+          body.classList.remove("sidebar-open");
+        }
+
+        // Scroll doux vers la version
+        setTimeout(() => {
+          targetVersion.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    });
+
     ul.appendChild(li);
   });
 }

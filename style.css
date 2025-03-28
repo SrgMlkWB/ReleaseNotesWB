@@ -1727,3 +1727,51 @@ body.dark-mode .tag {
     line-height: 1.1 !important;
   }
 }
+
+/* Style de base pour le texte dans les détails des versions */
+.release-details {
+  color: var(--text-color);
+}
+
+.version-content {
+  color: var(--text-color);
+}
+
+.info-section {
+  color: var(--text-color);
+}
+
+.info-section p,
+.info-section li,
+.info-section strong {
+  color: var(--text-color);
+}
+
+/* Style spécifique pour les titres */
+.info-section h3 {
+  color: var(--primary-color);
+}
+
+.info-section h4 {
+  color: var(--text-color);
+}
+
+/* Ajustement pour le mode sombre */
+body.dark-mode .release-details,
+body.dark-mode .version-content,
+body.dark-mode .info-section,
+body.dark-mode .info-section p,
+body.dark-mode .info-section li,
+body.dark-mode .info-section strong,
+body.dark-mode .info-section h4 {
+  color: var(--tertiary-color);
+}
+
+/* Style pour les tags */
+.tag {
+  color: var(--text-color);
+}
+
+body.dark-mode .tag {
+  color: var(--tertiary-color);
+}
