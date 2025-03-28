@@ -13,6 +13,8 @@
   --tag-evolutionary-bg: #ccffcc;
   --tag-evolutionary-text: #008000;
   --text-primary: #333333;
+  --border-color: #eee;
+  --dark-border-color: #333333;
 }
 
 /* ========= RESET & BASE STYLES ========= */
@@ -47,6 +49,7 @@ body {
 body.dark-mode {
   --bg-color: var(--secondary-color);
   --text-color: var(--tertiary-color);
+  --border-color: var(--dark-border-color);
 }
 
 body.dark-mode .switch {
@@ -57,8 +60,11 @@ body.dark-mode .sidebar a {
   color: var(--tertiary-color);
 }
 
-body.dark-mode .arrow-icon {
-  filter: invert(1);
+body.dark-mode .arrow-icon,
+body.dark-mode .info-section h3::before,
+body.dark-mode .lang-arrow::after {
+  filter: invert(58%) sepia(75%) saturate(1373%) hue-rotate(338deg)
+    brightness(97%) contrast(94%); /* Même filtre orange */
 }
 
 /* ========= LAYOUT COMPONENTS ========= */
@@ -146,7 +152,7 @@ nav {
 /* --- Sidebar --- */
 .sidebar {
   padding-top: 25px !important;
-  border-right: 1px solid #eee;
+  border-right: 1px solid var(--border-color);
   width: 300px;
   position: fixed;
   left: 0;
@@ -188,7 +194,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   width: 100%;
 }
 
@@ -769,7 +775,7 @@ body.dark-mode .switch {
 /* Sidebar - Version desktop */
 .sidebar {
   padding-top: 50px;
-  border-right: 1px solid #eee;
+  border-right: 1px solid var(--border-color);
   width: 300px;
   position: fixed;
   left: 0;
@@ -1124,7 +1130,7 @@ main {
   margin-left: 100px;
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* Ajustements pour mobile */
@@ -1204,11 +1210,6 @@ main {
 .version-content ul {
   margin: 0 0 10px 20px;
   padding: 0;
-}
-
-/* Ajustements pour le mode sombre */
-body.dark-mode .arrow-icon {
-  filter: invert(1);
 }
 
 /* Ajustements mobile */
@@ -1489,6 +1490,7 @@ body.dark-mode .arrow-icon {
   font-weight: 500;
 }
 
+/* Style de base pour les flèches des h3 */
 .info-section h3::before {
   content: "";
   display: inline-block;
@@ -1497,18 +1499,14 @@ body.dark-mode .arrow-icon {
   background: url("img/Arrow.png") no-repeat center;
   background-size: contain;
   transform: rotate(0deg);
+  filter: invert(58%) sepia(75%) saturate(1373%) hue-rotate(338deg)
+    brightness(97%) contrast(94%); /* Filtre orange */
 }
 
-/* Style pour les sous-titres (h4) */
-.info-section h4 {
-  color: var(--text-color);
-  font-size: 1.1em;
-  font-weight: 600;
-}
-
-/* Version sombre */
+/* Supprimer l'inversion en mode sombre */
 body.dark-mode .info-section h3::before {
-  filter: invert(1);
+  filter: invert(58%) sepia(75%) saturate(1373%) hue-rotate(338deg)
+    brightness(97%) contrast(94%); /* Même filtre orange */
 }
 
 /* Version mobile */
@@ -1525,6 +1523,13 @@ body.dark-mode .info-section h3::before {
   .info-section h4 {
     font-size: 1em;
   }
+}
+
+/* Style pour les sous-titres (h4) */
+.info-section h4 {
+  color: var(--text-color);
+  font-size: 1.1em;
+  font-weight: 600;
 }
 
 .info-section ul {
