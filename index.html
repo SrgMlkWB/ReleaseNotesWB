@@ -261,15 +261,17 @@
 
           // Vérifier si la clé existe dans les traductions
           if (translations[lang][key]) {
-            // Gérer les différents types d'éléments
             if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
-              // Pour les champs de saisie, mettre à jour le placeholder
               element.placeholder = translations[lang][key];
             } else if (element.tagName === "META") {
-              // Pour les balises meta, mettre à jour le contenu
               element.content = translations[lang][key];
+            } else if (
+              element.tagName === "A" &&
+              element.classList.contains("contact-link")
+            ) {
+              // Traitement spécial pour les liens de contact
+              element.textContent = translations[lang][key];
             } else {
-              // Pour les autres éléments, mettre à jour le texte
               element.textContent = translations[lang][key];
             }
           } else {
@@ -282,42 +284,10 @@
         // Mettre à jour la langue du document
         document.documentElement.lang = lang;
 
-        // Mettre à jour le sélecteur de langue
-        const languageSelect = document.getElementById("language-select");
-        if (languageSelect) {
-          languageSelect.value = lang;
-        }
-
         // Sauvegarder la préférence de langue
         localStorage.setItem("selectedLanguage", lang);
       }
 
-      // Initialisation de la langue
-      function initializeLanguage() {
-        // Toujours utiliser l'anglais comme langue par défaut
-        const initialLang = "en";
-
-        // Mettre à jour l'interface avec la langue initiale
-        updateLanguage(initialLang);
-      }
-
-      // Configuration des écouteurs d'événements
-      document.addEventListener("DOMContentLoaded", () => {
-        const languageSelect = document.getElementById("language-select");
-
-        if (languageSelect) {
-          languageSelect.addEventListener("change", (e) => {
-            updateLanguage(e.target.value);
-          });
-        }
-
-        // Initialiser la langue
-        initializeLanguage();
-      });
-
-      // Supprimer les event listeners pour le close disclaimer
-    </script>
-    <script>
       document.addEventListener("DOMContentLoaded", function () {
         const languageSelector = document.querySelector(".language-selector");
         const selectedFlag = document.querySelector(".selected-flag");
@@ -328,8 +298,9 @@
           selectedFlag.style.backgroundImage = `url(https://flagicons.lipis.dev/flags/4x3/${flagCode}.svg)`;
         }
 
-        // Initialiser avec le drapeau anglais
+        // Initialiser avec le drapeau anglais et la langue anglaise
         updateSelectedFlag("gb");
+        updateLanguage("en");
 
         // Toggle du dropdown
         languageSelector.addEventListener("click", function (e) {
@@ -347,7 +318,7 @@
             const flagCode = this.dataset.flag;
 
             updateSelectedFlag(flagCode);
-            updateLanguage(value); // Fonction existante pour mettre à jour la langue
+            updateLanguage(value);
             languageSelector.classList.remove("active");
           });
         });
