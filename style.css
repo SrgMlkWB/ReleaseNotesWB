@@ -29,7 +29,7 @@ body {
 body {
   font-family: gotham_bookregular, Arial, Helvetica, sans-serif;
   background-color: var(--bg-color);
-  color: var(--text-color);
+  color: var(--tertiary-color);
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -270,27 +270,67 @@ nav {
 /* --- Header --- */
 header {
   position: relative;
-  height: 300px; /* Réduit de 500px à 300px */
+  height: 300px;
   width: 100%;
   box-sizing: border-box;
   margin-top: 93px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start; /* Changé pour aligner en haut */
   z-index: 1000;
+  overflow: hidden; /* Pour contenir les images */
 }
 
-header::before {
-  content: "";
+header h2 {
+  color: var(--tertiary-color);
+  position: relative;
+  z-index: 1000;
+  font-size: 55px;
+  text-align: center;
+  width: calc(100% - 40px);
+  max-width: 1200px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), -2px -2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajustements responsive */
+@media (max-width: 768px) {
+  header h2 {
+    font-size: 40px;
+    margin: 10px auto 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3),
+      -1px -1px 3px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 480px) {
+  header h2 {
+    font-size: 30px;
+    margin: 8px auto 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3),
+      -1px -1px 2px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Style pour les images du diaporama */
+.slideshow-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("img/B3TX.jpeg") no-repeat center center;
   background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
   z-index: -1;
+}
+
+/* Classe pour l'image active */
+.slideshow-image.active {
+  opacity: 1;
 }
 
 /* Version mobile */
@@ -298,13 +338,13 @@ header::before {
   header {
     margin-top: 98px;
     height: 150px;
-    min-height: 200px; /* Réduit de 250px à 200px */
+    min-height: 200px;
   }
 }
 
 @media (max-width: 480px) {
   header {
-    height: 130px; /* Ajout d'une hauteur spécifique pour les très petits écrans */
+    height: 130px;
     min-height: 180px;
   }
 }
