@@ -31,6 +31,7 @@ body {
   background-color: var(--bg-color);
   color: var(--tertiary-color);
   transition: background-color 0.3s, color 0.3s;
+  margin-top: -30px;
 }
 
 .visually-hidden {
@@ -334,7 +335,6 @@ nav {
 
 /* --- Header --- */
 header {
-  margin-top: 90px; /* Somme des hauteurs du disclaimer et de la navbar */
   position: relative;
   height: 300px;
   width: 100%;
@@ -342,46 +342,59 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   z-index: 1000;
   overflow: hidden;
 }
 
+/* Overlay noir transparent */
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Overlay noir à 40% d'opacité */
+  z-index: -1;
+}
+
+.slideshow-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  z-index: -2; /* Placé derrière l'overlay */
+}
+
 header h2 {
   color: var(--tertiary-color);
-  position: relative;
-  z-index: 1000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 55px;
   text-align: center;
-  width: 100%;
+  width: auto;
   max-width: 1200px;
-  margin: 0 auto; /* Centrer horizontalement */
-  padding: 10px 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), -2px -2px 4px rgba(0, 0, 0, 0.3);
+  margin: 0;
+  padding: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Ajustements responsive */
 @media (max-width: 768px) {
-  #winback-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 15px;
-  }
-
   header {
-    margin-top: 98px;
+    margin-top: 95px;
     height: 150px;
     min-height: 200px;
   }
 
   header h2 {
     font-size: 40px;
-    margin: 0 auto;
-    padding: 0 20px;
-    width: 100%;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3),
-      -1px -1px 3px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -393,24 +406,7 @@ header h2 {
 
   header h2 {
     font-size: 30px;
-    margin: 20px auto;
-    padding: 0 0;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3),
-      -1px -1px 2px rgba(0, 0, 0, 0.3);
   }
-}
-
-/* Style pour l'image de fond */
-.slideshow-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 1;
-  z-index: -1;
 }
 
 /* Version mobile */
@@ -1323,22 +1319,43 @@ main {
 }
 
 .version h2 {
-  color: var(
-    --primary-color
-  ); /* Utilise la couleur orange définie dans les variables */
+  color: var(--primary-color);
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Changé de center à flex-start */
   cursor: pointer;
   margin-top: 15px;
-  font-weight: 500; /* Assure une bonne lisibilité */
+  font-weight: 500;
+  line-height: 1.2; /* Ajouté pour contrôler la hauteur de ligne */
 }
 
+/* Style pour la flèche */
 .arrow-icon {
   width: 20px;
   height: 20px;
   margin-left: 10px;
   transition: transform 0.3s ease;
   rotate: 90deg;
+  flex-shrink: 0; /* Empêche la flèche de se redimensionner */
+  margin-top: 4px; /* Ajustement fin pour aligner avec la première ligne */
+}
+
+/* Mode sombre */
+body.dark-mode .version h2 {
+  color: var(--tertiary-color); /* Blanc en mode sombre */
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+  .version h2 {
+    font-size: 17px;
+    line-height: 1.3;
+  }
+
+  .arrow-icon {
+    width: 16px;
+    height: 16px;
+    margin-top: 3px; /* Ajusté pour mobile */
+  }
 }
 
 .release-details {
@@ -1837,4 +1854,26 @@ body.dark-mode .info-section h4 {
 
 body.dark-mode .tag {
   color: var(--tertiary-color);
+}
+
+/* Mode sombre - Titres et flèches */
+body.dark-mode .version h2 {
+  color: var(--tertiary-color);
+}
+
+body.dark-mode .arrow-icon {
+  filter: brightness(0) invert(1); /* Rend l'image de la flèche blanche */
+}
+
+body.dark-mode .version-content h4 {
+  color: var(--tertiary-color);
+}
+
+body.dark-mode .info-section h3,
+body.dark-mode .info-section h4 {
+  color: var(--tertiary-color);
+}
+
+body.dark-mode .info-section h3::before {
+  filter: brightness(0) invert(1); /* Rend l'image de la flèche blanche */
 }
