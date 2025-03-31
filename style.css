@@ -1220,37 +1220,37 @@ header h1 {
 }
 
 .flag-dropdown {
-  height: 187px !important;
-  width: 193px !important;
+  width: auto !important;
+  height: auto !important;
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #ddddddbb;
+  top: 60px;
+  left: -10px;
+  background-color: #eeeeee9e;
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 0px;
-  /* z-index supprimé ici car géré dans .language-selector.active .flag-dropdown */
+  box-sizing: border-box;
 }
 
 .language-selector.active .flag-dropdown {
-  left: -20px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  width: max-content;
-  z-index: 20000 !important; /* Le plus élevé de tous */
+  grid-template-columns: repeat(3, 53px); /* 3 colonnes de largeur fixe */
+  gap: 12px; /* Gap uniforme horizontal et vertical */
+  padding: 12px; /* Padding égal au gap pour symétrie */
+  width: fit-content;
+  z-index: 5;
 }
 
 .flag-option {
-  border-radius: 3px;
   width: 53px;
   height: 40px;
+  border-radius: 3px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   transition: transform 0.2s;
+  margin: 0; /* Supprime les marges par défaut */
 }
 
 .flag-option:hover {
@@ -1292,6 +1292,7 @@ header h1 {
   }
 
   .flag-dropdown {
+    left: -20px;
     padding: 8px; /* Légèrement plus de padding pour accommoder les plus grands drapeaux */
     gap: 8px; /* Augmenté l'espacement entre les drapeaux */
   }
