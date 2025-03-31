@@ -1191,7 +1191,7 @@ header h1 {
 }
 
 .disclaimer {
-  background-color: var(--bg-color); /* Même couleur que la navbar */
+  background-color: #f2f2f2; /* Même couleur que la navbar */
   color: var(--text-color); /* Même couleur de texte que la navbar */
   width: 100%;
   position: fixed;
