@@ -140,12 +140,12 @@ body.dark-mode .disclaimer::after {
 /* Navbar - sous le disclaimer */
 nav {
   position: fixed;
-  top: 45px;
+  top: 45px; /* Exactement la hauteur du disclaimer */
   left: 0;
   width: 100%;
   height: 60px;
   background-color: var(--bg-color);
-  z-index: 2 !important;
+  z-index: 9999; /* Juste en dessous du disclaimer */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -193,7 +193,7 @@ nav {
   width: 220px;
   height: calc(100vh - 105px);
   background-color: var(--bg-color);
-  z-index: 3; /* Au-dessus du header */
+  z-index: 9998;
   overflow-y: auto;
   transition: all 0.3s ease;
 }
@@ -350,15 +350,15 @@ nav {
 /* Header - en dessous */
 header {
   position: relative;
-  height: 500px;
+  margin-top: 100px !important; /* 45px (disclaimer) + 60px (navbar) */
+  height: 400px !important;
   width: 100%;
   box-sizing: border-box;
-  margin-top: 93px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 0; /* Toujours sous la sidebar */
+  z-index: 0;
   overflow: hidden;
   background-image: url("img/B4.jpeg"); /* Remplace le slideshow par une image fixe */
   background-size: cover;
