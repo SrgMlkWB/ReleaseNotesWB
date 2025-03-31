@@ -145,7 +145,7 @@ nav {
   width: 100%;
   height: 60px;
   background-color: var(--bg-color);
-  z-index: 9999;
+  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -251,7 +251,7 @@ nav {
   top: 80px !important;
   height: calc(100vh - 93px);
   background: var(--bg-color);
-  z-index: 9998 !important;
+  z-index: 98 !important;
   transition: all 0.3s ease;
   overflow-y: auto;
 }
@@ -1220,19 +1220,21 @@ header h1 {
 }
 
 .flag-dropdown {
+  height: 187px !important;
+  width: 193px !important;
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: var(--bg-color);
+  background-color: #ddddddbb;
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 5px;
+  padding: 0px;
   /* z-index supprimé ici car géré dans .language-selector.active .flag-dropdown */
 }
 
 .language-selector.active .flag-dropdown {
-  left: 0px;
+  left: -20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
@@ -1242,8 +1244,8 @@ header h1 {
 
 .flag-option {
   border-radius: 3px;
-  width: 40px;
-  height: 30px;
+  width: 53px;
+  height: 40px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
