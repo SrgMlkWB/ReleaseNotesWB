@@ -32,6 +32,7 @@ body {
   color: var(--tertiary-color);
   transition: background-color 0.3s, color 0.3s;
   margin-top: -30px;
+  z-index: -2;
 }
 
 .visually-hidden {
@@ -69,7 +70,7 @@ body.dark-mode .sidebar a {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10000;
+  z-index: 40 !important;
   background-color: var(--bg-color);
   color: var(--text-color);
   height: 45px;
@@ -145,7 +146,7 @@ nav {
   width: 100%;
   height: 60px;
   background-color: var(--bg-color);
-  z-index: 2 !important;
+  z-index: 9999 !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -217,7 +218,7 @@ nav {
   }
 
   header {
-    z-index: 0; /* Maintenir le header sous la sidebar */
+    z-index: -1 !important; /* Maintenir le header sous la sidebar */
     margin-top: 95px; /* Ajusté (45px disclaimer + 50px navbar) */
   }
 
@@ -358,7 +359,7 @@ header {
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 0; /* Toujours sous la sidebar */
+  z-index: -1 !important; /* Toujours sous la sidebar */
   overflow: hidden;
   background-image: url("img/B4.jpeg"); /* Remplace le slideshow par une image fixe */
   background-size: cover;
@@ -1182,7 +1183,7 @@ header h1 {
 .disclaimer-top {
   width: 100%;
   position: relative;
-  z-index: 4000;
+  z-index: 999 !important;
   display: flex;
   align-items: center;
   padding: 0 220px 20px;
@@ -1221,6 +1222,7 @@ header h1 {
   min-width: 65px;
   background-color: transparent;
   cursor: pointer;
+  z-index: 5;
 }
 
 .selected-flag {
@@ -1240,7 +1242,7 @@ header h1 {
   position: absolute;
   top: 60px;
   left: -10px;
-  background-color: #eeeeee9e;
+  background-color: var(--bg-color);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   box-sizing: border-box;
@@ -1252,7 +1254,8 @@ header h1 {
   gap: 12px; /* Gap uniforme horizontal et vertical */
   padding: 12px; /* Padding égal au gap pour symétrie */
   width: fit-content;
-  z-index: 5;
+  z-index: 9999 !important; /* Valeur la plus élevée pour être toujours au-dessus */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optionnel: ajoute une ombre pour mieux voir la superposition */
 }
 
 .flag-option {
@@ -1627,27 +1630,6 @@ body.dark-mode .version h2 {
   }
 }
 
-.close-disclaimer {
-  background: hsla(0, 0%, 100%, 0.2);
-  border: 1px solid #f18841;
-  border-radius: 20%;
-  color: #f18841;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 0;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.3s ease;
-}
-
-.close-disclaimer:hover {
-  color: #ff0000;
-  background: hsla(24, 86%, 60%, 0.2);
-}
-
 /* Ajuster le padding du texte pour la croix */
 .disclaimer-content span {
   text-align: center;
@@ -1662,10 +1644,6 @@ body.dark-mode .version h2 {
 
   .language-selector select {
     font-size: 35px;
-  }
-
-  .close-disclaimer {
-    font-size: 20px;
   }
 
   .disclaimer-content span {
