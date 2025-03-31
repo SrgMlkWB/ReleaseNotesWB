@@ -145,7 +145,7 @@ nav {
   width: 100%;
   height: 60px;
   background-color: var(--bg-color);
-  z-index: 99;
+  z-index: 2 !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -193,9 +193,19 @@ nav {
   width: 220px;
   height: calc(100vh - 105px);
   background-color: var(--bg-color);
-  z-index: 1000; /* Entre navbar et header */
+  z-index: 3; /* Au-dessus du header */
   overflow-y: auto;
   transition: all 0.3s ease;
+}
+
+.sidebar.visible {
+  transform: translateX(0);
+  z-index: 1; /* Maintenir le même z-index quand visible */
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+  z-index: 1; /* Maintenir le même z-index même quand caché */
 }
 
 /* Responsive Design */
@@ -207,6 +217,7 @@ nav {
   }
 
   header {
+    z-index: 0; /* Maintenir le header sous la sidebar */
     margin-top: 95px; /* Ajusté (45px disclaimer + 50px navbar) */
   }
 
@@ -229,6 +240,7 @@ nav {
     width: 80%;
     top: 80px !important;
     height: calc(100vh - 90px);
+    z-index: 1; /* Maintenir la sidebar au-dessus du header */
   }
 
   .sidebar.visible {
@@ -346,7 +358,7 @@ header {
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 998; /* Réduit pour passer sous la sidebar */
+  z-index: 0; /* Toujours sous la sidebar */
   overflow: hidden;
   background-image: url("img/B4.jpeg"); /* Remplace le slideshow par une image fixe */
   background-size: cover;
@@ -431,6 +443,7 @@ main {
   max-width: 900px;
   position: relative;
   transition: margin-left 0.3s ease;
+  z-index: 0;
 }
 
 main h2 {
@@ -515,6 +528,7 @@ main h3 {
     margin-top: 105px; /* Ajusté pour la nouvelle hauteur de navbar (45px disclaimer + 60px navbar) */
     height: 150px;
     min-height: 250px;
+    z-index: 1;
   }
 
   main {
