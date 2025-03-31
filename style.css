@@ -152,6 +152,7 @@ nav {
   padding: 0 20px;
   box-sizing: border-box;
   transition: background-color 0.3s, color 0.3s;
+  z-index: 6;
 }
 
 .nav-container {
@@ -263,7 +264,7 @@ nav {
   top: 80px !important;
   height: calc(100vh - 93px);
   background: var(--bg-color);
-  z-index: 98 !important;
+  z-index: 1000 !important;
   transition: all 0.3s ease;
   overflow-y: auto;
 }
@@ -1142,7 +1143,7 @@ header {
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 1000;
+  z-index: -1;
 }
 
 header::before {
@@ -1240,7 +1241,7 @@ header h1 {
   position: absolute;
   top: 60px;
   left: -10px;
-  background-color: #eeeeee9e;
+  background-color: #efefef;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   box-sizing: border-box;
